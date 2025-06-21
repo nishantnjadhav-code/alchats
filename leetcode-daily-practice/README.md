@@ -6,6 +6,7 @@ Daily LeetCode solutions with explanations
 
 ## 📅 Daily Progress Tracker
 
-| Day | Problem Name                      | Difficulty | Topics                | Language | Solution Link |
-|-----|----------------------------------|------------|------------------------|----------|----------------|
-| 1   | Merge Sorted Array (88)          | Easy       | Arrays, Two Pointers   | Python   | [Code](leetcode-daily-practice/day1/merge_sorted_array.py) |
+| Day | Problem Name                 | Difficulty | Topics               | Language | Solution Link |
+|-----|------------------------------|------------|-----------------------|----------|----------------|
+| 1   | Merge Sorted Array (88)      | Easy       | Arrays, Two Pointers | Python   | [Code](leetcode-daily-practice/day1/merge_sorted_array.py) |
+| 1   | Remove Element (27)          | Easy       | Arrays, Two Pointers | Python   | [Code](leetcode-daily-practice/day1/remove_element.py)     |
