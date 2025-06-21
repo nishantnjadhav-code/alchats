@@ -18,3 +18,4 @@ def remove_blocked_words(words, blocked):
 
 output 
 Filtered words: ['dhelhi', 'solapur', 'maharashtra']
+it based on my understadninh knowledge
