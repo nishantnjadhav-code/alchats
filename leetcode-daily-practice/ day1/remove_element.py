@@ -1,6 +1,5 @@
 # Problem: 27. Remove Element
-# https://leetcode.com/problems/remove-element/
-# Difficulty: Easy
+
 # Topic: Arrays, Two Pointers
 
 def removeElement(nums, val):
