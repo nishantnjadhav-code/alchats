@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>ALCHATS | HYPERGLASS – Premium Eyewear Universe</title>
+    <!-- TailwindCSS + FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght=400;700;900&family=Rajdhani:wght=400;500;600;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: radial-gradient(circle at 10% 20%, #070515 0%, #000000 100%);
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Orbitron', monospace; }
+        .neon-glow {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.7), 0 0 18px rgba(0, 242, 255, 0.5);
+        }
+        .card-3d {
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 35px -12px rgba(0, 242, 255, 0.3);
+            border-color: rgba(0, 242, 255, 0.8);
+        }
+        @keyframes scanMove {
+            0 { top: -5%; }
+            100% { top: 105%; }
+        }
+        .scanner-line {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #0ff, #f0f, transparent);
+            filter: blur(2px);
+            animation: scanMove 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .glow-border {
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            box-shadow: 0 0 12px rgba(0, 242, 255, 0.2);
+        }
+        .glass-bg {
+            background: rgba(10, 8, 28, 0.6);
+            backdrop-filter: blur(12px);
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #0a0a1a; }
+        ::-webkit-scrollbar-thumb { background: #00f2fe; border-radius: 20px; }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER with cart -->
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#020105]/90 border-b border-cyan-500/40 px-6 py-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="font-display text-3xl md:text-4xl font-black tracking-widest bg-gradient-to-r from-cyan-300 via-purple-400 to-pink-500 bg-clip-text text-transparent neon-glow">
+                    ALCHATS
+                </span>
+                <span class="hidden md:inline-block text-[9px] font-mono border border-cyan-500/50 px-2 py-0.5 rounded-full text-cyan-300">EYEWEAR NODE</span>
+            </div>
+            <nav class="hidden md:flex space-x-7 text-sm font-bold uppercase tracking-wide">
+                <a href="#hero" class="hover:text-cyan-300 transition">Home</a>
+                <a href="#ar-tryon" class="hover:text-purple-300 transition">AR Studio</a>
+                <a href="#catalog" class="hover:text-cyan-300 transition">All Glasses</a>
+                <a href="#checkout-section" class="hover:text-fuchsia-300 transition">Checkout</a>
+            </nav>
+            <div class="flex items-center gap-5 text-xl">
+                <i class="fa-regular fa-user text-cyan-300/70 cursor-pointer"></i>
+                <div class="relative cursor-pointer" onclick="scrollToCheckoutWithCart()">
+                    <i class="fa-solid fa-bag-shopping text-cyan-300"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-3 bg-pink-500 text-[11px] w-5 h-5 rounded-full flex items-center justify-center text-black font-black">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative min-h-[85vh] flex items-center justify-center px-6 overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/hexellence.png')] opacity-20"></div>
+            <div class="max-w-5xl text-center z-10">
+                <span class="font-display tracking-[0.3em] text-cyan-300 text-sm border-l-2 border-r-2 border-cyan-400/60 px-4 py-1">LIMITLESS EYEWEAR</span>
+                <h1 class="font-display text-6xl md:text-8xl font-black uppercase leading-[1.1] mt-5 bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent">
+                    SEE THE FUTURE.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-cyan-400">WEAR THE EDGE.</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-gray-300 text-lg mt-6">30+ completely distinct, manually customizable designer glasses built for live AR integration.</p>
+                <div class="flex flex-wrap justify-center gap-5 mt-10">
+                    <a href="#catalog" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 font-display font-bold uppercase tracking-wider rounded shadow-xl shadow-cyan-500/30 hover:scale-105 transition">Explore Collection →</a>
+                    <a href="#ar-tryon" class="px-8 py-3 border border-cyan-400/70 backdrop-blur-sm font-display font-bold uppercase tracking-wider text-cyan-300 hover:bg-cyan-500/10 transition">Live AR Mirror</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AR CAMERA STUDIO -->
+        <section id="ar-tryon" class="py-20 px-6 bg-[#03010b] border-y border-purple-500/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="font-display text-3xl md:text-5xl font-black uppercase tracking-wider bg-gradient-to-r from-cyan-300 to-purple-400 bg-clip-text text-transparent">⚡ Neural AR Fit Studio</h2>
+                    <p class="text-gray-400 mt-2">Try any product live on your profile window — custom camera integration + realtime chroma matrix</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                    <div class="space-y-4 order-2 lg:order-1 glass-bg p-5 rounded-xl border border-cyan-500/30">
+                        <h3 class="font-display text-cyan-300 text-sm uppercase tracking-wider">🎯 Core Targeting Engine</h3>
+                        <div class="grid grid-cols-2 gap-2 text-xs font-bold font-mono">
+                            <button onclick="setAREngineMode('sunglasses')" id="btn-target-glasses" class="p-3 border border-cyan-400 bg-cyan-500/10 text-cyan-300 rounded-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-glasses"></i> SHADES
+                            </button>
+                            <button onclick="setAREngineMode('shoes')" id="btn-target-shoes" class="p-3 border border-gray-700 bg-black/40 text-gray-400 rounded-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-shoe-prints"></i> KICKS
+                            </button>
+                        </div>
+
+                        <h3 class="font-display text-cyan-300 text-sm uppercase tracking-wider pt-2">✨ LENS CHROMA FX</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="changeARFrame('neon-cyan')" class="bg-black/50 border border-cyan-500 px-3 py-1.5 text-xs font-bold rounded-lg">CYBER CYAN</button>
+                            <button onclick="changeARFrame('neon-purple')" class="bg-black/50 border border-purple-500 px-3 py-1.5 text-xs font-bold rounded-lg">VIOLET WAVE</button>
+                            <button onclick="changeARFrame('gold-blaze')" class="bg-black/50 border border-amber-400 px-3 py-1.5 text-xs font-bold rounded-lg">GOLD BLAZE</button>
+                            <button onclick="changeARFrame('iridescent')" class="bg-black/50 border border-pink-400 px-3 py-1.5 text-xs font-bold rounded-lg">IRIDESCENT</button>
+                            <button onclick="changeARFrame('stealth')" class="bg-black/50 border border-gray-500 px-3 py-1.5 text-xs font-bold rounded-lg">STEALTH DARK</button>
+                        </div>
+                        <button onclick="startCamera()" class="w-full mt-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white font-display font-bold py-3 uppercase tracking-wider rounded-lg shadow-lg shadow-purple-500/30 hover:scale-[1.01] transition">
+                            <i class="fa-solid fa-video mr-2"></i> Activate Live Camera
+                        </button>
+                    </div>
+                    
+                    <!-- CAMERA VIEW -->
+                    <div class="lg:col-span-2 order-1 lg:order-2 relative bg-black rounded-xl border border-purple-500/50 overflow-hidden aspect-video flex items-center justify-center shadow-2xl">
+                        <video id="webcam" class="absolute w-full h-full object-cover scale-x-[-1] hidden" autoplay playsinline muted></video>
+                        <div id="ar-placeholder" class="text-center p-8 z-10 flex flex-col items-center">
+                            <i class="fa-regular fa-eye-slash text-5xl text-purple-400 animate-pulse"></i>
+                            <p class="font-display text-gray-400 mt-3">Camera offline</p>
+                            <button onclick="startCamera()" class="mt-2 bg-cyan-900/60 text-cyan-300 px-4 py-1 text-xs rounded-full border border-cyan-500">Initialize Lens</button>
+                        </div>
+                        <div id="ar-overlay" class="absolute inset-0 pointer-events-none hidden flex flex-col items-center justify-center">
+                            <div class="scanner-line"></div>
+                            <div class="flex justify-center items-center w-full h-full">
+                                <img id="ar-glasses-png" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&auto=format" class="w-64 md:w-80 object-contain drop-shadow-[0_0_20px_rgba(0,242,255,0.9)] transition-all duration-300" style="transform: translateY(-15px);" alt="AR overlay">
+                            </div>
+                            <div id="hud-status-tag" class="absolute bottom-4 glass-bg px-4 py-1 rounded-full text-[10px] font-mono text-cyan-300 border border-cyan-500/50 backdrop-blur-md">🔒 ENGINE LOCK: SUNGLASSES</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPANDED GLASSES CATALOG -->
+        <section id="catalog" class="py-20 px-6 max-w-7xl mx-auto">
+            <div class="flex justify-between items-end flex-wrap border-b border-gray-800 pb-4 mb-8">
+                <div>
+                    <span class="text-cyan-400 font-display text-xs tracking-widest uppercase">// HYPERGLASS ARCHIVE</span>
+                    <h2 class="font-display text-4xl md:text-5xl font-black uppercase tracking-tight">Iconic Sunglasses</h2>
+                </div>
+                <p class="text-gray-400 text-sm">30 Curated Manual Frames • Fully Configured</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7" id="glasses-grid"></div>
+        </section>
+
+        <!-- PREMIUM SHOE SECTION -->
+        <section class="py-12 px-6 max-w-7xl mx-auto border-t border-gray-800/50">
+            <div class="text-center mb-8">
+                <span class="text-purple-400 font-display text-xs tracking-widest uppercase">// STREETWEAR MATRIX</span>
+                <h3 class="font-display text-3xl font-black uppercase">HyperKicks Collection</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="shoe-grid"></div>
+        </section>
+
+        <!-- SECURE CHECKOUT -->
+        <section id="checkout-section" class="py-16 px-6 bg-[#05030f] border-t border-cyan-500/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center gap-3 mb-6 border-b border-gray-800 pb-3">
+                    <i class="fa-solid fa-shield-halved text-cyan-400 text-xl"></i>
+                    <h2 class="font-display text-2xl md:text-3xl font-black uppercase tracking-wider">Secure Checkout Portal</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-3 space-y-5">
+                        <div class="glass-bg p-6 rounded-xl">
+                            <h3 class="text-sm font-bold uppercase text-cyan-400 flex items-center gap-2"><i class="fa-solid fa-location-dot"></i> Delivery Coordinates</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                                <input id="cust-name" type="text" placeholder="Full Name" class="bg-black/60 border border-gray-700 p-3 text-sm focus:border-cyan-400 outline-none rounded text-white">
+                                <input id="cust-phone" type="tel" placeholder="Mobile Number" class="bg-black/60 border border-gray-700 p-3 text-sm focus:border-cyan-400 outline-none rounded text-white">
+                                <input id="cust-addr" type="text" placeholder="Address (Area / Street)" class="bg-black/60 border border-gray-700 p-3 text-sm focus:border-cyan-400 outline-none rounded md:col-span-2 text-white">
+                                <input id="cust-pin" type="text" placeholder="Pincode" class="bg-black/60 border border-gray-700 p-3 text-sm focus:border-cyan-400 outline-none rounded text-white">
+                                <input id="cust-city" type="text" placeholder="City" class="bg-black/60 border border-gray-700 p-3 text-sm focus:border-cyan-400 outline-none rounded text-white">
+                            </div>
+                        </div>
+                        <div class="glass-bg p-6 rounded-xl">
+                            <h3 class="text-sm font-bold uppercase text-purple-400 flex items-center gap-2"><i class="fa-regular fa-credit-card"></i> Payment Protocol</h3>
+                            <div class="space-y-2 mt-3">
+                                <label class="flex items-center gap-3 bg-black/30 p-3 rounded border border-gray-700 cursor-pointer"><input type="radio" name="payment" value="upi" checked class="accent-cyan-500"> <span class="text-sm font-bold">UPI (Google Pay / PhonePe)</span></label>
+                                <label class="flex items-center gap-3 bg-black/30 p-3 rounded border border-gray-700 cursor-pointer"><input type="radio" name="payment" value="cod" class="accent-purple-500"> <span class="text-sm font-bold">Cash on Delivery</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <div class="glass-bg p-6 rounded-xl sticky top-28 border border-cyan-500/30">
+                            <h3 class="font-display text-sm uppercase tracking-wider text-gray-300 border-b border-gray-700 pb-3">Order Summary</h3>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between text-sm"><span class="text-gray-400">Selected Item:</span> <span id="summary-item" class="font-bold text-cyan-300 truncate max-w-[180px]">ORBIT CYBER SHIELD</span></div>
+                                <div class="flex justify-between text-sm"><span class="text-gray-400">Quantity:</span> <span>1x Unit</span></div>
+                                <div class="flex justify-between text-sm"><span class="text-gray-400">Shipping:</span> <span class="text-green-400">FREE Express</span></div>
+                                <div class="border-t border-gray-700 my-3 pt-3 flex justify-between text-lg font-black"><span>Total</span><span id="summary-price" class="text-cyan-400 font-display text-2xl">₹999</span></div>
+                            </div>
+                            <button onclick="executeOrderValidation()" class="w-full mt-5 bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black py-4 uppercase tracking-widest text-sm rounded-xl shadow-xl hover:scale-[1.01] transition">Place Order Securely</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black/90 border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-6">
+            <span class="font-display text-cyan-400 tracking-wider">ALCHATS © 2026 — HYPERGLASS NODE</span>
+        </div>
+    </footer>
+
+    <script>
+        // =========================================================================
+        // 30 TOTALLY UNIQUE GLASSES ASSETS (MANUALLY TARGETED DISCRETE REFS)
+        // =========================================================================
+        const glassesCollection = [
+            { name: "ORBIT CYBER SHIELD", price: 999, img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&auto=format", hue: 0 },
+            { name: "NOVA AVIATOR", price: 1149, img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&auto=format", hue: 25 },
+            { name: "PHANTOM MIRROR", price: 1299, img: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=400&auto=format", hue: 180 },
+            { name: "AETHER CHROME", price: 1399, img: "https://images.unsplash.com/photo-1537531510616-af5a21c6eb8e?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1537531510616-af5a21c6eb8e?w=400&auto=format", hue: 45 },
+            { name: "DRIFT CARBON", price: 1099, img: "https://images.unsplash.com/photo-1577803645773-964ff0967b71?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1577803645773-964ff0967b71?w=400&auto=format", hue: 280 },
+            { name: "VELOCITY WRAP", price: 1249, img: "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=400&auto=format", hue: 300 },
+            { name: "NEBULA VISION", price: 1199, img: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1556306535-0f09a537f0a3?w=400&auto=format", hue: 210 },
+            { name: "INFINITE POLAR", price: 1449, img: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=400&auto=format", hue: 60 },
+            { name: "SPECTRUM EDGE", price: 999, img: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=400&auto=format", hue: 90 },
+            { name: "ZENITH OVAL", price: 1099, img: "https://images.unsplash.com/photo-1582142407894-ec85a1268a4e?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1582142407894-ec85a1268a4e?w=400&auto=format", hue: 140 },
+            { name: "STELLAR RAY", price: 1299, img: "https://images.unsplash.com/photo-1509695507497-903c140c43b0?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1509695507497-903c140c43b0?w=400&auto=format", hue: 330 },
+            { name: "FUTURISTIC LEGACY", price: 1499, img: "https://images.unsplash.com/photo-1511499468190-2f6853957825?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1511499468190-2f6853957825?w=400&auto=format", hue: 15 },
+            { name: "CYBERPUNK 2099", price: 1399, img: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=400&auto=format", hue: 270 },
+            { name: "GLACIER FRAME", price: 1149, img: "https://images.unsplash.com/photo-1608248597481-496100c80836?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1608248597481-496100c80836?w=400&auto=format", hue: 195 },
+            { name: "MORPH SHIELD", price: 1599, img: "https://images.unsplash.com/photo-1625591340248-6d289000f96a?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1625591340248-6d289000f96a?w=400&auto=format", hue: 55 },
+            { name: "RAVE SPECS", price: 999, img: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=400&auto=format", hue: 240 },
+            { name: "HYPERION FLOW", price: 1199, img: "https://images.unsplash.com/photo-1562157705-52c417c9a559?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1562157705-52c417c9a559?w=400&auto=format", hue: 0 },
+            { name: "OBSIDIAN STRIKE", price: 1349, img: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=400&auto=format", hue: 310 },
+            { name: "LUMA BLADE", price: 1279, img: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&auto=format", hue: 80 },
+            { name: "AURORA LENS", price: 999, img: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&auto=format", hue: 200 },
+            { name: "RAPID ARC", price: 1099, img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400&auto=format", hue: 45 },
+            { name: "TITAN OVERLORD", price: 1499, img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format", hue: 130 },
+            { name: "NIGHTFALL CORE", price: 1149, img: "https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?w=400&auto=format", hue: 220 },
+            { name: "SOLARIS ULTRA", price: 1249, img: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400&auto=format", hue: 30 },
+            { name: "VORTEX GOGGLE", price: 1399, img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&auto=format", hue: 160 },
+            { name: "CHRONO VISOR", price: 1549, img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1554151228-14d9def656e4?w=400&auto=format", hue: 290 },
+            { name: "OMEGA REBEL", price: 1199, img: "https://images.unsplash.com/photo-1520635242504-807ba25f82a5?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1520635242504-807ba25f82a5?w=400&auto=format", hue: 110 },
+            { name: "GALAXY SHADE", price: 1049, img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format", hue: 70 },
+            { name: "ECLIPSE SPECTRUM", price: 1299, img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format", hue: 250 },
+            { name: "VECTOR PRO", price: 1449, img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format", arImg: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format", hue: 340 }
+        ];
+
+        const shoesCollection = [
+            { name: "NEBULA RUNNERS", price: 1899, img: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&auto=format" },
+            { name: "QUANTUM VOLT", price: 2199, img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format" },
+            { name: "CYBER SOLE X", price: 2499, img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=500&auto=format" }
+        ];
+
+        let currentCartItem = "ORBIT CYBER SHIELD";
+        let currentCartPrice = 999;
+        let cartCount = 0;
+        let activeAREngine = "sunglasses"; 
+
+        function updateCartUI() { 
+            document.getElementById('cart-count').innerText = cartCount; 
+        }
+
+        function scrollToCheckoutWithCart() {
+            document.getElementById('summary-item').innerText = currentCartItem;
+            document.getElementById('summary-price').innerText = `₹${currentCartPrice}`;
+            document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function setAREngineMode(mode) {
+            activeAREngine = mode;
+            const btnGlasses = document.getElementById('btn-target-glasses');
+            const btnShoes = document.getElementById('btn-target-shoes');
+            const statusLabel = document.getElementById('hud-status-tag');
+            const arImg = document.getElementById('ar-glasses-png');
+
+            if(mode === 'sunglasses') {
+                btnGlasses.className = "p-3 border border-cyan-400 bg-cyan-500/10 text-cyan-300 rounded-lg transition-all flex items-center justify-center gap-2";
+                btnShoes.className = "p-3 border border-gray-700 bg-black/40 text-gray-400 rounded-lg transition-all flex items-center justify-center gap-2";
+                statusLabel.innerText = "🔒 ENGINE LOCK: SUNGLASSES";
+                arImg.src = "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&auto=format";
+                arImg.className = "w-64 md:w-80 object-contain drop-shadow-[0_0_20px_rgba(0,242,255,0.9)] transition-all duration-300";
+                arImg.style.transform = "translateY(-15px)";
+            } else {
+                btnShoes.className = "p-3 border border-purple-400 bg-purple-500/10 text-purple-300 rounded-lg transition-all flex items-center justify-center gap-2";
+                btnGlasses.className = "p-3 border border-gray-700 bg-black/40 text-gray-400 rounded-lg transition-all flex items-center justify-center gap-2";
+                statusLabel.innerText = "🔒 ENGINE LOCK: STREET KICKS";
+                arImg.src = "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format";
+                arImg.className = "w-48 md:w-56 object-contain filter drop-shadow-[0_0_20px_rgba(192,132,252,0.8)] transition-all duration-300";
+                arImg.style.transform = "translateY(0px) rotate(15deg)";
+            }
+        }
+
+        function selectForAR(imageUrl, hueVal, type = "sunglasses") {
+            setAREngineMode(type);
+            const arImg = document.getElementById('ar-glasses-png');
+            arImg.src = imageUrl;
+            if(type === 'sunglasses') {
+                arImg.style.filter = `hue-rotate(${hueVal}deg) drop-shadow(0 0 14px cyan)`;
+            } else {
+                arImg.style.filter = `hue-rotate(${hueVal}deg) drop-shadow(0 0 14px #c084fc)`;
+            }
+            document.getElementById('ar-tryon').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function buyNowWithItem(name, price, arUrl, hueValue, type = "sunglasses") {
+            currentCartItem = name;
+            currentCartPrice = price;
+            document.getElementById('summary-item').innerText = name;
+            document.getElementById('summary-price').innerText = `₹${price}`;
+            cartCount = 1;
+            updateCartUI();
+
+            if(arUrl && document.getElementById('webcam')?.classList?.contains('hidden') === false) {
+                selectForAR(arUrl, hueValue, type);
+            }
+            document.getElementById('checkout-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function renderGlasses() {
+            const container = document.getElementById('glasses-grid');
+            if(!container) return;
+            container.innerHTML = "";
+            glassesCollection.forEach(glass => {
+                const card = document.createElement('div');
+                card.className = "bg-[#0c0a1a]/90 border border-gray-800 rounded-2xl overflow-hidden hover:border-cyan-500/70 transition-all duration-300 card-3d flex flex-col";
+                card.innerHTML = `
+                    <div class="aspect-square overflow-hidden bg-black/40">
+                        <img src="${glass.img}" class="w-full h-full object-cover hover:scale-110 transition duration-700" alt="${glass.name}">
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start gap-2">
+                            <h3 class="font-display font-bold text-sm uppercase tracking-wide truncate max-w-[160px]" title="${glass.name}">${glass.name}</h3>
+                            <span class="text-cyan-400 font-black text-lg">₹${glass.price}</span>
+                        </div>
+                        <p class="text-gray-400 text-xs mt-1 mb-4">🔷 Custom Designer Frame • Premium Optics</p>
+                        <div class="grid grid-cols-2 gap-2 mt-auto">
+                            <button onclick="selectForAR('${glass.arImg}', ${glass.hue}, 'sunglasses')" class="bg-zinc-900 hover:bg-zinc-800 border border-cyan-500/40 text-cyan-400 py-2 text-xs font-bold uppercase tracking-wider rounded-lg">✨ AR Try</button>
+                            <button onclick="buyNowWithItem('${glass.name}', ${glass.price}, '${glass.arImg}', ${glass.hue}, 'sunglasses')" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-black py-2 text-xs uppercase tracking-wider rounded-lg">Buy Now →</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function renderShoes() {
+            const shoeContainer = document.getElementById('shoe-grid');
+            if(!shoeContainer) return;
+            shoeContainer.innerHTML = "";
+            shoesCollection.forEach(shoe => {
+                const shoeCard = document.createElement('div');
+                shoeCard.className = "bg-[#0c0a1a]/80 border border-purple-500/30 rounded-2xl overflow-hidden hover:border-purple-400 transition-all";
+                shoeCard.innerHTML = `
+                    <div class="aspect-square overflow-hidden"><img src="${shoe.img}" class="w-full h-full object-cover hover:scale-105 transition"></div>
+                    <div class="p-4 flex justify-between items-center">
+                        <span class="font-display font-bold uppercase text-sm">${shoe.name}</span>
+                        <span class="text-purple-400 font-black">₹${shoe.price}</span>
+                    </div>
+                    <div class="px-4 pb-4 grid grid-cols-2 gap-2">
+                        <button onclick="selectForAR('${shoe.img}', 0, 'shoes')" class="bg-zinc-900 hover:bg-zinc-800 border border-purple-500/40 text-purple-400 py-2 text-xs font-bold uppercase rounded-lg">✨ AR Try</button>
+                        <button onclick="buyNowWithItem('${shoe.name}', ${shoe.price}, '${shoe.img}', 0, 'shoes')" class="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 text-xs uppercase rounded-lg">Buy Now</button>
+                    </div>
+                `;
+                shoeContainer.appendChild(shoeCard);
+            });
+        }
+
+        let activeStream = null;
+        async function startCamera() {
+            const video = document.getElementById('webcam');
+            const placeholder = document.getElementById('ar-placeholder');
+            const overlay = document.getElementById('ar-overlay');
+            if(activeStream) activeStream.getTracks().forEach(t => t.stop());
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+                video.srcObject = stream;
+                activeStream = stream;
+                video.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                overlay.classList.remove('hidden');
+            } catch(e) { alert("Camera access required for live studio testing."); }
+        }
+
+        function changeARFrame(style) {
+            const gls = document.getElementById('ar-glasses-png');
+            if(style === 'neon-cyan') gls.style.filter = 'hue-rotate(0deg) drop-shadow(0 0 15px cyan)';
+            else if(style === 'neon-purple') gls.style.filter = 'hue-rotate(260deg) drop-shadow(0 0 15px #c084fc)';
+            else if(style === 'gold-blaze') gls.style.filter = 'hue-rotate(45deg) saturate(1.5) drop-shadow(0 0 12px gold)';
+            else if(style === 'iridescent') gls.style.filter = 'hue-rotate(180deg) saturate(2) drop-shadow(0 0 12px hotpink)';
+            else if(style === 'stealth') gls.style.filter = 'grayscale(1) brightness(0.5) contrast(1.4)';
+        }
+
+        function executeOrderValidation() {
+            const name = document.getElementById('cust-name')?.value.trim();
+            const phone = document.getElementById('cust-phone')?.value.trim();
+            const addr = document.getElementById('cust-addr')?.value.trim();
+            const pin = document.getElementById('cust-pin')?.value.trim();
+            const city = document.getElementById('cust-city')?.value.trim();
+            if(!name || !phone || !addr || !pin || !city) return alert("Please fill out all missing delivery fields.");
+            
+            alert(`✨ ORDER PROCESSED! ✨\nItem Matrix: ${currentCartItem}\nConsignee: ${name}\nLedger Total: ₹${currentCartPrice}`);
+            cartCount = 0;
+            updateCartUI();
+        }
+
+        renderGlasses();
+        renderShoes();
+        updateCartUI();
+        window.selectForAR = selectForAR;
+        window.buyNowWithItem = buyNowWithItem;
+        window.startCamera = startCamera;
+        window.changeARFrame = changeARFrame;
+        window.executeOrderValidation = executeOrderValidation;
+        window.scrollToCheckoutWithCart = scrollToCheckoutWithCart;
+        window.setAREngineMode = setAREngineMode;
+    </script>
+</body>
+</html>
